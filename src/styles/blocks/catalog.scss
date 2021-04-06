@@ -1,18 +1,19 @@
 .catalog {
-  @extend %text-family;
-  justify-content: center;
+  margin: 0 40px;
+  display: grid;
+  font-family: Roboto, sans-serif;
   @include font-size(11px, 400);
 
   &__wrapper {
-    width: getCardShift($card-width, $item-shift);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, $card-width);
     justify-content: center;
-  }
-
-  &__item {
-    margin-bottom: 50px;
-    @include item-shift($item-gap);
+    grid-gap: $item-row-gap $item-column-gap;
+  
+    @media (max-width: ($card-width * 4) + ($item-column-gap * 3) + 80px) {
+      & {
+        grid-template-columns: repeat(auto-fill, $card-width);
+      }
+    }
   }
 }
